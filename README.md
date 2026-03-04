@@ -69,7 +69,7 @@ sudo apt install build-essential cmake
 ```
 
 
-## Make directroy
+## 3 Make directroy
 
 ```bash
 mkdir webapi
@@ -77,13 +77,13 @@ python3 -m venv apienv
 source apienv/bin/activate
 ```
 
-## Install project dependencies
+## 4 Install project dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## mysql database setup
+## 5 mysql database setup
 
 ```bash
 sudo su -
@@ -95,7 +95,7 @@ flush privileges;
 EXIT;
 ```
 
-## Make directory of faceapi
+## 6  Make directory of faceapi
  ```bash
 mkdir faceapi
 git init
@@ -103,12 +103,12 @@ git clone project_repository
 ```
 
 
-## Django 
+## 7 Django 
 > Model migrations
 
 ```bash
-python manage.py makemigrations
-python manage.py migrate
+(myprojectenv) $ ~/myprojectdir/manage.py makemigrations
+(myprojectenv) $ ~/myprojectdir/manage.py migrate
 ```
 
 > API key creation
@@ -120,6 +120,102 @@ Enter API Key name: faceapi
 API Key created successfully!
 API Key: ****************************(copy it and keep secure)
 Save this key securely. It will not be shown again.
+```
+
+> Create an administrative user for the project by typing:
+```bash
+(myprojectenv) $ ~/myprojectdir/manage.py createsuperuser
+
+```
+**You will have to select a username, provide an email address, and choose and confirm a password.**
+
+>You can collect all of the static content into the directory location that you configured by typing:
+```bash
+(myprojectenv) $ ~/myprojectdir/manage.py collectstatic
+```
+
+## 8 Creating systemd socket and service files for Gunicorn
+
+> Socket file
+
+```bash
+$ sudo nano /etc/systemd/system/gunicorn.socket
+```
+> /etc/systemd/system/gunicorn.scoket
+```bash
+[Unit]
+Description=gunicorn daemon for Django project
+After=network.target
+
+[Service]
+User= username
+Group=www-data
+WorkingDirectory= /home/username/projectdir
+ExecStart=/home/username/projectdir/projectenv/bin/gunicorn \
+         --access-logfile - \
+         --workers 3 \
+         --bind unix:/home/username/projectdir/faceapi.sock \
+         projectname.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
+
+```
+> Service file
+
+```bash
+$ sudo nano /etc/systemd/system/gunicorn.service
+```
+
+> /etc/systemd/system/gunicorn.service
+
+```bash
+[Unit]
+Description=gunicorn daemon for Django project
+After=network.target
+
+[Service]
+User= username
+Group=www-data
+WorkingDirectory= /home/username/projectdir
+ExecStart=/home/username/projectdir/projectenv/bin/gunicorn \
+         --access-logfile - \
+         --workers 3 \
+         --bind unix:/home/username/projectdir/faceapi.sock \
+         projectname.wsgi:application
+
+RuntimeDirectory=gunicorn
+[Install]
+WantedBy=multi-user.target
+
+```
+> Start and enable Gunicorn socket
+
+```bash
+$ sudo systemctl start gunicorn.socket
+$ sudo systemctl enable gunicorn.socket
+```
+
+This will create the socket file at /run/gunicorn/gunicorn.sock now and at boot.
+When a connection is made to that socket, systemd will automatically start the gunicorn.service to handle.
+
+> Checking for the Gunicorn Socket File
+Check the status of the process to find out whether it was able to start:
+```bash
+$ sudo systemctl status gunicorn.sock
+```
+You should receive an output like this:
+
+```bash
+Output
+● gunicorn.socket - gunicorn socket
+     Loaded: loaded (/etc/systemd/system/gunicorn.socket; enabled; vendor preset: enabled)
+     Active: active (listening) since Mon 2026-03-04 15:05:25 IST; 5s ago
+   Triggers: ● gunicorn.service
+     Listen: /run/gunicorn.sock (Stream)
+     CGroup: /system.slice/gunicorn.socket
+
+Mar 4 15:05:25 django systemd[1]: Listening on gunicorn socket.
 ```
 
 ## Django modules configuration
