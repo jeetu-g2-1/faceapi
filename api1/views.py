@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from api1.authentication import APIKeyAuthentication
 from api1.logic import compute_face_distance
-from api1.models import FaceImageResponse
+#from api1.models import FaceImageResponse
 
 class FaceVerificationAPI(APIView):
     authentication_classes = [APIKeyAuthentication]
