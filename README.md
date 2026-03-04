@@ -78,13 +78,9 @@ python3 -m venv apienv
 source apienv/bin/activate
 ```
 
-## 4 Install project dependencies
 
-```bash
-pip install -r requirements.txt
-```
 
-## 5 mysql database setup
+## 4 mysql database setup
 
 ```bash
 sudo su -
@@ -96,13 +92,18 @@ flush privileges;
 EXIT;
 ```
 
-## 6  Make directory of faceapi
+## 5 Make directory of faceapi
  ```bash
 mkdir faceapi
 git init
 git clone project_repository
 ```
 
+## 6 Install project dependencies
+
+```bash
+pip install -r requirements.txt
+```
 
 ## 7 Django 
 > Model migrations
