@@ -73,11 +73,12 @@ sudo apt install build-essential cmake
 ## 3 Make directroy
 
 ```bash
-mkdir webapi
+mkdir parentdir
+cd parentdir
 python3 -m venv apienv
 source apienv/bin/activate
 ```
-
+> In parent directory, faceapi and virtual environment.
 
 
 ## 4 mysql database setup
@@ -94,16 +95,18 @@ EXIT;
 
 ## 5 Make directory of faceapi
  ```bash
-mkdir faceapi
-git init
-git clone project_repository
+
+(myprojectenv) parentdir $ git clone project_repository
 ```
 
 ## 6 Install project dependencies
 
 ```bash
-pip install -r requirements.txt
+(myprojectenv) ~/parentdir $ cd projectdir
+(myprojectenv) ~/parentdir/projectdir $ cd development
+(myprojectenv) ~/parentdir/projectdir/development $ pip install -r requirements.txt
 ```
+**development directory contains required packages and its version for installation. **
 
 ## 7 Django 
 > Model migrations
