@@ -16,7 +16,8 @@ FaceAPI is a RESTful API built using **Django**, **Django REST Framework**, **My
 
 ---
 
-# 📌 System Prerequisites
+# 📌 Installation
+> Prerequisites
 
 Ensure the following packages are installed:
 
@@ -32,7 +33,7 @@ Ensure the following packages are installed:
 
 ---
 
-# 📌 Packages
+> 📌 Packages
 
 Ensure the following packages are installed:
 
@@ -51,13 +52,13 @@ Ensure the following packages are installed:
 
 # 🛠 Installation Guide (Ubuntu/Debian)
 
-## 1️⃣ Update System
+## 1 Update System
 
 ```bash
 sudo apt update
 sudo apt upgrade -y
 ```
-## 2️⃣ Install Required Packages
+## 2 Install Required Packages
 
 ```bash
 sudo apt install nginx
