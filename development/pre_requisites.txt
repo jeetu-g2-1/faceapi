@@ -1,0 +1,22 @@
+This text file specifies the prequisite packages available in the system.
+
+Python 3.12 version
+MySQL 8 version
+Nginx 1.24
+gcc 13.3
+cmake 3.28
+venv
+pip
+
+sudo apt install nginx
+sudo apt install mysql-server 
+
+sudo apt-get install python3-pip 
+sudo apt-get install python3-venv
+sudo apt-get install python3-dev
+
+sudo apt-get install build-essential cmake 
+
+python3 -m venv "venvname"
+source venvname/bin/activate
+
