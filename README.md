@@ -68,20 +68,7 @@ sudo apt install python3-venv
 sudo apt install python3-dev
 sudo apt install build-essential cmake
 ```
-
-
-## 3 Make directroy
-
-```bash
-mkdir parentdir
-cd parentdir
-python3 -m venv apienv
-source apienv/bin/activate
-```
-> In parent directory, faceapi and virtual environment.
-
-
-## 4 mysql database setup
+## 3 mysql database setup
 
 ```bash
 sudo su -
@@ -92,6 +79,25 @@ grant all privileges on procotred_exam.* to 'proctor_admin'@'localhost';
 flush privileges;
 EXIT;
 ```
+> [!WARNING]
+> This database name and user password used in django project file - settings.py database configuration.
+
+
+## 4 Make Parent directroy for project and create virtual environment
+
+```bash
+ ~/home $ mkdir parentdir
+ ~/home $cd parentdir
+ ~/home/parentdir $ python3 -m venv myprojectenv
+ ~/home/parentdir $ ls
+ myprojectenv
+ ~/home/parentdir $ source myprojectenv/bin/activate
+ (myprojectenv) ~/home/parentdir $ 
+```
+> In parent directory, faceapi and virtual environment.
+
+
+
 
 ## 5 Make directory of faceapi
  ```bash
@@ -112,8 +118,8 @@ EXIT;
 > Model migrations
 
 ```bash
-(myprojectenv) $ ~/myprojectdir/manage.py makemigrations
-(myprojectenv) $ ~/myprojectdir/manage.py migrate
+(myprojectenv) ~/parentdir/myprojectdir $ python manage.py makemigrations
+(myprojectenv) ~/parentdir/myprojectdir $ python manage.py migrate
 ```
 
 > API key creation
@@ -129,7 +135,7 @@ Save this key securely. It will not be shown again.
 
 > Create an administrative user for the project by typing:
 ```bash
-(myprojectenv) $ ~/myprojectdir/manage.py createsuperuser
+(myprojectenv) ~/parentdir/myprojectdir $ python manage.py createsuperuser
 
 ```
 **You will have to select a username, provide an email address, and choose and confirm a password.**
