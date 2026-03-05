@@ -169,20 +169,12 @@ $ sudo nano /etc/systemd/system/gunicorn.socket
 ```bash
 [Unit]
 Description=gunicorn daemon for Django project
-After=network.target
 
-[Service]
-User= username
-Group=www-data
-WorkingDirectory= /home/username/projectdir
-ExecStart=/home/username/projectdir/projectenv/bin/gunicorn \
-         --access-logfile - \
-         --workers 3 \
-         --bind unix:/home/username/projectdir/faceapi.sock \
-         projectname.wsgi:application
+[Socket]
+ListenStream=/run/gunicorn.sock
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=sockets.target
 
 ```
 > Service file
