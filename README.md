@@ -67,6 +67,8 @@ sudo apt install python3-pip
 sudo apt install python3-venv
 sudo apt install python3-dev
 sudo apt install build-essential cmake
+sudo apt install pkg-config
+sudo apt install default-libmysqlclient-dev
 ```
 ## 3 mysql database setup
 
