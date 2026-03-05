@@ -263,6 +263,20 @@ server {
 }
 ```
 
+> Test the Nginx configuration for syntax errors by typing:
+```bash
+$ sudo nginx -t
+```
+
+> If no errors are reported, go ahead and restart Nginx by typing:
+```bash
+$ sudo systemctl restart nginx
+```
+> Finally, need to open up  firewall to normal traffic on port 80.
+```bash
+$ sudo ufw allow 'Nginx Full'
+```
+
 
 ## Django modules configuration
 
