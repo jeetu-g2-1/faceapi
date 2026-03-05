@@ -101,16 +101,27 @@ EXIT;
 
 
 
-## 5 Make directory of faceapi
- ```bash
+## 5 fork the git repository and clone it.
 
-(myprojectenv) parentdir $ git clone project_repository
+>Before cloning git repository, generate ssh public and private key.
+```bash
+(myprojectenv) ~/parentdir $  ssh-keygen -t ed25519 -C "email or purpose of the key"
+(myprojectenv) ~/parentdir $  ls ~/.ssh
+id_ed25519.pub id_ed25519
+(myprojectenv) ~/parentdir $  cat ~/.ssh/id_ed25519.pub
+copy the public key and paste ssh key in github repository
+
+```
+>clone
+ ```bash
+(myprojectenv) ~/parentdir $ 
+(myprojectenv) ~/parentdir $ git clone ssh_type repository link
 ```
 
 ## 6 Install project dependencies
 
 ```bash
-(myprojectenv) ~/parentdir $ cd projectdir
+
 (myprojectenv) ~/parentdir/projectdir $ cd development
 (myprojectenv) ~/parentdir/projectdir/development $ pip install -r requirements.txt
 ```
