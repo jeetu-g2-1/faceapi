@@ -240,6 +240,30 @@ Output
 Mar 4 15:05:25 django systemd[1]: Listening on gunicorn socket.
 ```
 
+##  9 Configure Nginx to Proxy Pass to Gunicorn
+
+```bash
+$ sudo nano /etc/nginx/sites-available/myproject
+```
+
+> /etc/nginx/sites-available/myproject
+```bash
+server {
+    listen 80;
+    server_name server_domain_or_IP ;
+    location = /favicon.ico { access_log off;  log_not_found off; }
+    location /static/ {
+           root /home/user/parentdir/myprojectdir;
+    }
+    
+    location / {
+       include proxy_params;
+       proxy_pass http://unix:/run/gunicorn/faceapi.sock:;
+    }
+}
+```
+
+
 ## Django modules configuration
 
 > update settings.py
