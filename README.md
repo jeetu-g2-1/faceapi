@@ -115,7 +115,7 @@ copy the public key and paste ssh key in github repository
 >clone
  ```bash
 (myprojectenv) ~/parentdir $ 
-(myprojectenv) ~/parentdir $ git clone ssh_type repository link
+(myprojectenv) ~/parentdir $ git "clone ssh_type repository link"
 ```
 
 ## 6 Install project dependencies
