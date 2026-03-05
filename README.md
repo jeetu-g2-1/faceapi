@@ -155,7 +155,7 @@ Save this key securely. It will not be shown again.
 
 >You can collect all of the static content into the directory location that you configured by typing:
 ```bash
-(myprojectenv) $ ~/myprojectdir/manage.py collectstatic
+(myprojectenv) ~/parentdir/myprojectdir $ python manage.py collectstatic
 ```
 
 ## 8 Creating systemd socket and service files for Gunicorn
