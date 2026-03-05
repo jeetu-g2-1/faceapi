@@ -9,7 +9,10 @@ venv
 pip
 
 sudo apt install nginx
-sudo apt install mysql-server 
+sudo apt install mysql-server
+
+sudo apt install pkg-config //finds installed mysql libraries
+sudo apt install default-libmysqlclient-dev // mysql client development libraries
 
 sudo apt-get install python3-pip 
 sudo apt-get install python3-venv
