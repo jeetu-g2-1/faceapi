@@ -205,12 +205,18 @@ RuntimeDirectory=gunicorn
 WantedBy=multi-user.target
 
 ```
-> Start and enable Gunicorn socket
+> After editing systemd files:
 
 ```bash
-$ sudo systemctl start gunicorn.socket
-$ sudo systemctl enable gunicorn.socket
+$ sudo systemctl daemon-reload
+
 ```
+>Start socket
+
+```bash
+sudo systemctl start gunicorn.socket
+```
+
 
 This will create the socket file at /run/gunicorn/gunicorn.sock now and at boot.
 When a connection is made to that socket, systemd will automatically start the gunicorn.service to handle.
