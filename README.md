@@ -323,6 +323,22 @@ $ select * from api1_apikey;
 In this u can the API Key name and hashed_key
 
 ```
+
+### Uncomplicated Firewall(UFW) is the firewall manager commonly used on Ubuntu.
+
+> Nginx, HTTP, SSH, HTTPS
+
+```bash
+sudo ufw allow 'Nginx HTTP'
+sudo ufw allow out 80
+sudo ufw allow out 443
+```
+> To check status
+
+```bash
+sudo ufw allow status
+```
+
 ### Django modules configuration
 
 > update settings.py
