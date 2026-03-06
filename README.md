@@ -158,6 +158,19 @@ Save this key securely. It will not be shown again.
 (myprojectenv) ~/parentdir/myprojectdir $ python manage.py collectstatic
 ```
 
+## User_Service : 'faceapi_service'
+> For permission and authentication need user
+```bash
+(myprojectenv) ~/parentdir/myprojectdir $ python manage.py shell
+
+from django.contrib.auth.models import User
+
+user,created = User.objects.get_or_create(username="faceapi_service", defaults={"is_active": True})
+print(user,created)
+
+```
+
+
 ## 8 Creating systemd service file for Gunicorn
 
 > Service file
