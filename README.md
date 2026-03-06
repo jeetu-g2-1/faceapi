@@ -169,7 +169,13 @@ user,created = User.objects.get_or_create(username="faceapi_service", defaults={
 print(user,created)
 
 ```
+## Test API Service through curl request
 
+```bash
+
+$ curl -X POST -H "Content-Type: application/json" -H "X-API-KEY: YOUR_API_KEY_HERE" -d '{"original_img_response":"","face_img_response":""}' http://domain_name/api1/faceapi/
+
+```
 
 ## 8 Creating systemd service file for Gunicorn
 
