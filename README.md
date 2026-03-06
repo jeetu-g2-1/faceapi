@@ -295,7 +295,13 @@ $ sudo systemctl status nginx
 
 ```
 
-## Django modules configuration
+## Troubleshooting
+### Check error.log, if permission denied
+> check authentication.py that contains name of API Key
+```bash
+APIKey name
+```
+### Django modules configuration
 
 > update settings.py
 
