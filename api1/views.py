@@ -29,12 +29,12 @@ class FaceVerificationAPI(APIView):
         # 4️⃣ Compute face distance
         face_result = compute_face_distance(original_img, face_img)
 
-        # 5️⃣ Store in database
-        FaceImageResponse.objects.create(
-            original=original_img,
-            face=face_img,
-            result=face_result
-        )
+        # # 5️⃣ Store in database
+        # FaceImageResponse.objects.create(
+        #     original=original_img,
+        #     face=face_img,
+        #     result=face_result
+        # )
 
         # 6️⃣ Determine AWS flag (traffic light)
         if face_result <= 0.6:
