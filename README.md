@@ -299,7 +299,23 @@ $ sudo systemctl status nginx
 ### Check error.log, if permission denied
 > check authentication.py that contains name of API Key
 ```bash
-APIKey name
+Compare API Key name in authentication.py and api1_APIkey table
+
+In authentication.py
+try:
+ key_obj = APIKey.objects.get(name='Faceapi')
+here name is 'Faceapi'
+
+In api1_APIKey table
+$ sudo su -
+$ mysql
+$ show databases
+$ use proctored_exam;
+$ show tables
+
+$ select * from api1_apikey;
+In this u can the API Key name and hashed_key
+
 ```
 ### Django modules configuration
 
