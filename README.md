@@ -202,26 +202,27 @@ sudo systemctl start gunicorn.service
 ```
 
 
-This will create the socket file at /run/gunicorn/gunicorn.sock now and at boot.
+This will create the socket file at /run/gunicorn/faceapi.sock now and at boot.
 When a connection is made to that socket, systemd will automatically start the gunicorn.service to handle.
 
 > Checking for the Gunicorn Socket File
 Check the status of the process to find out whether it was able to start:
 ```bash
-$ sudo systemctl status gunicorn.sock
+$ sudo systemctl status gunicorn.service
 ```
 You should receive an output like this:
 
 ```bash
 Output
-● gunicorn.socket - gunicorn socket
-     Loaded: loaded (/etc/systemd/system/gunicorn.socket; enabled; vendor preset: enabled)
-     Active: active (listening) since Mon 2026-03-04 15:05:25 IST; 5s ago
-   Triggers: ● gunicorn.service
-     Listen: /run/gunicorn.sock (Stream)
-     CGroup: /system.slice/gunicorn.socket
+● gunicorn.service - gunicorn daemon for Django project
+     Loaded: loaded (/etc/systemd/system/gunicorn.service; enabled; preset: enabled)
+     Active: active (running) since Fri 2026-03-06 09:15:18 IST; 1h 8min ago
+   Main PID: 1632 (gunicorn)
+      Tasks: 61 (limit: 18545)
+     Memory: 632.4M (peak: 636.3M)
+        CPU: 9.744s
+     CGroup: /system.slice/gunicorn.service
 
-Mar 4 15:05:25 django systemd[1]: Listening on gunicorn socket.
 ```
 
 ##  9 Configure Nginx to Proxy Pass to Gunicorn
@@ -264,7 +265,22 @@ $ sudo systemctl restart nginx
 ```bash
 $ sudo ufw allow 'Nginx Full'
 ```
+> Status of Nginx
+```bash
+$ sudo systemctl status nginx
+```
+```bash
+● nginx.service - A high performance web server and a reverse proxy server
+     Loaded: loaded (/usr/lib/systemd/system/nginx.service; enabled; preset: enabled)
+     Active: active (running) since Fri 2026-03-06 09:17:17 IST; 1h 8min ago
+       Docs: man:nginx(8)
+   Main PID: 4344 (nginx)
+      Tasks: 21 (limit: 18545)
+     Memory: 17.0M (peak: 19.1M)
+        CPU: 90ms
+     CGroup: /system.slice/nginx.service
 
+```
 
 ## Django modules configuration
 
