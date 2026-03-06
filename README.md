@@ -158,25 +158,8 @@ Save this key securely. It will not be shown again.
 (myprojectenv) ~/parentdir/myprojectdir $ python manage.py collectstatic
 ```
 
-## 8 Creating systemd socket and service files for Gunicorn
+## 8 Creating systemd service file for Gunicorn
 
-> Socket file
-
-```bash
-$ sudo nano /etc/systemd/system/gunicorn.socket
-```
-> /etc/systemd/system/gunicorn.scoket
-```bash
-[Unit]
-Description=gunicorn daemon for Django project
-
-[Socket]
-ListenStream=/run/gunicorn.sock
-
-[Install]
-WantedBy=sockets.target
-
-```
 > Service file
 
 ```bash
@@ -209,12 +192,13 @@ WantedBy=multi-user.target
 
 ```bash
 $ sudo systemctl daemon-reload
+$ sudo systemctl enable gunicorn.service
 
 ```
 >Start socket
 
 ```bash
-sudo systemctl start gunicorn.socket
+sudo systemctl start gunicorn.service
 ```
 
 
