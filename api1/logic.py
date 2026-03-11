@@ -25,7 +25,7 @@ def compute_face_distance(base64_1, base64_2):
     encodings2 = face_recognition.face_encodings(image2)
 
     if not encodings1 or not encodings2:
-        raise ValueError("No face detected in one or both images.")
+        return 1
 
     # Take the first face found in each image
     encoding1 = encodings1[0]
